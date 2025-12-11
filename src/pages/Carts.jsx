@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 
 function Carts() {
-  const { cartItems, totalPrice, clearCart } = useCart()
+  const { cartItems, totalPrice, clearCart, increaseQuantity, decreaseQuantity, removeFromCart } = useCart()
   const [confirmed, setConfirmed] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -38,7 +38,30 @@ function Carts() {
               </div>
               <div className="cart-item-details">
                 <h3 className="cart-item-name">{item.name}</h3>
-                <p className="cart-item-price">{item.price}da</p>
+                <p className="cart-item-price">{item.price}da each</p>
+                <div className="quantity-controls">
+                  <button 
+                    className="quantity-btn" 
+                    onClick={() => decreaseQuantity(item.id)}
+                    disabled={(item.quantity || 1) <= 1}
+                  >
+                    −
+                  </button>
+                  <span className="quantity-display">{item.quantity || 1}</span>
+                  <button 
+                    className="quantity-btn" 
+                    onClick={() => increaseQuantity(item.id)}
+                  >
+                    +
+                  </button>
+                  <button 
+                    className="remove-btn" 
+                    onClick={() => removeFromCart(item.id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+                <p className="cart-item-subtotal">Subtotal: {item.price * (item.quantity || 1)}da</p>
               </div>
             </div>
           ))}

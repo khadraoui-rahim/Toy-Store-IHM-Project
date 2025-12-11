@@ -60,6 +60,35 @@
 .grid-item {
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeInImage 0.8s ease forwards;
+}
+
+.grid-item-1 {
+  animation-delay: 3.2s;
+}
+
+.grid-item-2 {
+  animation-delay: 3.4s;
+}
+
+.grid-item-3 {
+  animation-delay: 3.6s;
+}
+
+.grid-item-4 {
+  animation-delay: 3.8s;
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .grid-item img {
@@ -87,6 +116,20 @@
   text-align: center;
   width: 90%;
   max-width: 1200px;
+  opacity: 0;
+  animation: fadeInText 1s ease forwards;
+  animation-delay: 4.2s;
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .hero-text h1 {
@@ -119,6 +162,14 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.best-sellers.visible .section-title {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section-subtitle {
@@ -126,6 +177,14 @@
   font-size: 1.2rem;
   color: #888;
   margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+.best-sellers.visible .section-subtitle {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .home-toys-grid {
@@ -140,6 +199,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.best-sellers.visible .home-toy-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.best-sellers.no-animation .home-toy-card,
+.best-sellers.no-animation .section-title,
+.best-sellers.no-animation .section-subtitle,
+.best-sellers.no-animation .toys-button {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+  transition: none;
 }
 
 .home-toy-card img {
@@ -180,6 +256,14 @@
   padding: 0.8rem 3rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.best-sellers.visible .toys-button {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease 0.8s, transform 0.6s ease 0.8s, background 0.3s ease, color 0.3s ease;
 }
 
 .toys-button:hover {
@@ -428,7 +512,7 @@
 
 .toy-card {
   background-color: transparent;
-  border: 2px solid #333;
+  border: 2px solid #a7a5a5;
   border-radius: 50px;
   overflow: visible;
   position: relative;
@@ -586,6 +670,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  flex: 1;
 }
 
 .cart-item-name {
@@ -598,10 +683,80 @@
 
 .cart-item-price {
   font-family: 'Unbounded', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #666;
   margin: 0;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.quantity-btn {
+  font-family: 'Unbounded', sans-serif;
+  width: 35px;
+  height: 35px;
+  background-color: #f0f0f0;
+  border: 2px solid #333;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.quantity-btn:hover:not(:disabled) {
+  background-color: #333;
+  color: white;
+}
+
+.quantity-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quantity-display {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  min-width: 30px;
+  text-align: center;
+}
+
+.remove-btn {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #990000;
+  background-color: transparent;
+  border: 2px solid #990000;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.remove-btn:hover {
+  background-color: #990000;
+  color: white;
+}
+
+.cart-item-subtotal {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0.5rem 0 0 0;
 }
 
 .checkout-section {
